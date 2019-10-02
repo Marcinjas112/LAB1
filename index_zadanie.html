@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ARKA</title>
+</head>
+<body>
+<h1>PHP - Funkcje</h1>
+
+<p>Funkcje PHP są podobne do innych języków programowania. Funkcja jest fragmentem kodu, który pobiera jeszcze jedno wejście w postaci parametru i wykonuje pewne przetwarzanie i zwraca wartość.</p>
+
+<p><strong>Funcje dzdielimy na dwie różne części:</strong></p>
+<ul>
+<li>Tworzenie funkcji PHP</li>
+<li>Wywołanie funkcji PHP</li>
+</ul>
+
+
+
+<p>W rzeczywistości prawie nie trzeba tworzyć własnej funkcji PHP, ponieważ istnieje już ponad 1000 wbudowanych funkcji bibliotecznych utworzonych dla różnych obszarów i wystarczy odwołać się do nich zgodnie z wymaganiami.
+</p>
+
+
+<h2>Jak stworzyć własną funkcje?</h2>
+
+<p>Bardzo łatwo jest stworzyć własną funkcję PHP. Załóżmy, że chcesz utworzyć funkcję PHP, która po prostu napisze prostą wiadomość w przeglądarce, gdy ją wywołasz. Poniższy przykład tworzy funkcję o nazwie "writeMessage ()", a następnie wywołuje ją zaraz po jej utworzeniu.
+<br><br>
+Zauważ, że podczas tworzenia funkcji jej nazwa powinna zaczynać się od funkcji słowa kluczowego, a cały kod PHP powinien być umieszczony w nawiasach {i}, jak pokazano w poniższym przykładzie -
+</p>
+<form name="1" action="p1.php" method="post">
+
+<textarea id="1" rows="10" cols="60">&lt;?php
+         /* Zdefiniowanie funkcji */
+         function writeMessage() {
+            echo "Hello world! ";
+         }
+         
+         /* Wywołanie funkcji */
+         writeMessage();
+      ?&gt;
+</textarea>
+
+<p><input type="submit" value="Uruchom"></p>
+
+</form>
+
+<p>Spowoduje to wyświetlenie następującego wyniku</p>
+<textarea id="2" rows="1" cols="60">Hello world! 
+</textarea>
+
+<h2>Funkcje PHP z parametrami</h2>
+
+<p>PHP daje Ci możliwość przekazywania parametrów wewnątrz funkcji. Możesz przekazać jak najwięcej parametrów. Te parametry działają jak zmienne w twojej funkcji. Poniższy przykład pobiera dwa parametry całkowite i dodaje je razem, a następnie drukuje.</p>
+
+<form name="3" action="p2.php" method="post">
+
+<textarea id="3" rows="9" cols="60">      &lt;?php
+         function nowaA($num1, $num2) {
+            $sum = $num1 + $num2;
+            echo "Suma dwóch elementów jest równa : $sum";
+         }
+         
+         nowaA(10, 20);
+      ?&gt;
+</textarea>
+
+<p><input type="submit" value="Uruchom"></p>
+
+</form>
+<p>Spowoduje to wyświetlenie następującego wyniku</p>
+<textarea id="4" rows="1" cols="60">Suma dwóch elementów jest równa : 30
+</textarea>
+
+<h2>Przekazywanie argumentów przez odniesienie</h2>
+
+<p>Możliwe jest przekazywanie argumentów do funkcji przez odniesienie. Oznacza to, że odwołanie do zmiennej jest manipulowane przez funkcję, a nie kopię wartości zmiennej.<br><br>
+
+Wszelkie zmiany wprowadzone w argumencie w tych przypadkach zmienią wartość oryginalnej zmiennej. Możesz przekazać argument przez odniesienie, dodając znak ampersand do nazwy zmiennej w wywołaniu funkcji lub definicji funkcji.<br><br>
+
+Poniższy przykład przedstawia oba przypadki.</p>
+
+<form name="4" action="p3.php" method="post">
+
+<textarea id="5" rows="19" cols="60">      &lt;?php
+         function addFive($num) {
+            $num += 5;
+         }
+         
+         function addSix(&amp;$num) {
+            $num += 6;
+         }
+         
+         $orignum = 10;
+         addFive( $orignum );
+         
+         echo "Original Value is $orignum&lt;br /&gt;";
+         
+         addSix( $orignum );
+         echo "Original Value is $orignum&lt;br /&gt;";
+      ?&gt;
+</textarea>
+
+<p><input type="submit" value="Uruchom"></p>
+
+</form>
+<p>Spowoduje to wyświetlenie następującego wyniku</p>
+<textarea id="6" rows="3" cols="60">Original Value is 10
+Original Value is 16 
+</textarea>
+
+<h2>Funkcje PHP zwracają wartość</h2>
+
+<p>Funkcja może zwrócić wartość za pomocą instrukcji return w połączeniu z wartością lub obiektem. return zatrzymuje wykonywanie funkcji i wysyła wartość z powrotem do kodu wywołującego.<br><br>
+
+Możesz zwrócić więcej niż jedną wartość z funkcji używając zwracanej tablicy (1,2,3,4) .<br><br>
+
+Poniższy przykład pobiera dwa parametry całkowite i dodaje je razem, a następnie zwraca ich sumę do programu wywołującego. Zauważ, że słowo kluczowe return jest używane do zwracania wartości z funkcji. </p>
+
+<form name="5" action="p4.php" method="post">
+
+<textarea id="7" rows="11" cols="60">      &lt;?php
+         function addFunction($num1, $num2) {
+            $sum = $num1 + $num2;
+            return $sum;
+         }
+         $return_value = addFunction(30, 77);
+         
+         echo "Returned value from the function : $return_value";
+      ?&gt;
+</textarea>
+
+<p><input type="submit" value="Uruchom"></p>
+
+</form>
+<p>Spowoduje to wyświetlenie następującego wyniku</p>
+<textarea id="8" rows="2" cols="60">Returned value from the function : 107 
+</textarea>
+
+<h2>Ustawianie wartości domyślnych dla parametrów funkcji</h2>
+
+<p>Możesz ustawić parametr, aby miał wartość domyślną, jeśli wywołujący funkcję nie przejdzie przez niego.<br><br>
+
+Następująca funkcja wypisuje NULL w przypadku, gdy użycie nie przekazuje żadnej wartości tej funkcji.</p>
+
+<form name="6" action="p5.php" method="post">
+
+<textarea id="9" rows="11" cols="60">&lt;?php
+         function printMe($param = NULL) {
+            print $param;
+         }
+         
+         printMe("This is test");
+         printMe();
+      ?&gt;
+</textarea>
+
+<p><input type="submit" value="Uruchom"></p>
+
+</form>
+<p>Spowoduje to wyświetlenie następującego wyniku</p>
+<textarea id="10" rows="2" cols="60">This is test
+</textarea>
+<br><br><br><br>
+
+<h1>Operacje na tekstach: sprawdzanie i zmiana wielkości liter.</h1>
+<br>
+
+<h2>Zamiana na wielkie litery</h2>
+<p>Bardzo często, podczas obsługi formularzy, zachodzi potrzeba zamiany na wielkie litery. Przykładowo, chcemy przechowywać w bazie danych loginy użytkowników. Wyczulone algorytmy sprawdzające rozróżniają małe i wielkie litery. Admin, ADMIN, admin i AdMIn to cztery różne stringi. Żeby zabezpieczyć się przed przypadkami dodania dwóch tych samych nazw, różniących się tylko wielkością liter, musimy nauczyć się zamieniać je w jedną oraz drugą stronę.<br><br>
+
+Do zamany wszystkich liter w ciągu na wielkie, używamy funkcji strtoupper(). Poniżej przykład zastosowania: </p>
+
+<form name="a" action="z1.php" method="post">
+
+<textarea id="a" rows="11" cols="60">&lt;?php
+
+// przykładowy ciąg znaków zawierający małe oraz wielkie litery
+$wyswietl = "Silny jak Pudzian";
+
+// użycie funkcji strtoupper()
+$duze_litery = strtoupper($wyswietl);
+
+//Wywołanie zmiennej
+echo $duze_litery;
+
+?&gt;
+</textarea>
+
+<p><input type="submit" value="Uruchom"></p>
+
+</form>
+<p>Spowoduje to wyświetlenie następującego wyniku</p>
+<textarea id="3124" rows="2" cols="60">SILNY JAK PUDZIAN
+</textarea>
+
+<h2>Zamiana na małe litery</h2>
+<p>W analogiczny sposób możemy zamienić wszystkie znaki na małe litery. Służy do tego funkcja strtolower(). Poniżej przykład: </p>
+
+<form name="b" action="z2.php" method="post">
+
+<textarea id="122" rows="12" cols="60">&lt;?php
+
+// przykładowy ciąg znaków zawierający małe oraz wielkie litery
+$wyswietl = "SiLnY JaK PudzIAN";
+
+// użycie funkcji strtolower()
+$male_litery = strtolower($wyswietl);
+
+// wywołanie zmiennej
+echo $male_litery;
+
+?&gt;
+</textarea>
+
+<p><input type="submit" value="Uruchom"></p>
+
+</form>
+<p>Spowoduje to wyświetlenie następującego wyniku</p>
+<textarea id="c" rows="2" cols="60">silny jak pudzian
+</textarea>
+
+<h2>Zamiana pierwszych liter wyrazów na wielkie</h2>
+<p>Czasami, w celach estetycznych, zachodzi potrzeba zamiany tylko pierwszej litery na wielką (np. wyświetlanie i zapisywanie imienia lub nazwiska). PHP udostępnia nam funkcję ucwords(), która realizuje to zadanie.</p>
+
+<form name="c" action="z3.php" method="post">
+
+<textarea id="d" rows="12" cols="60">&lt;?php
+
+// przykładowy ciąg znaków zawierający małe litery
+$wyswietl = "silny jak pudzian";
+
+// użycie funkcji ucwords()
+$zdanie = ucwords($wyswietl);
+
+// wywołanie zmiennej
+echo $zdanie;
+
+?&gt;
+</textarea>
+
+<p><input type="submit" value="Uruchom"></p>
+
+</form>
+<p>Spowoduje to wyświetlenie następującego wyniku</p>
+<textarea id="345211" rows="2" cols="60">Silny Jak Pudzian
+</textarea>
+
+<h2>Sprawdzanie liczby znaków w ciągu</h2>
+<p>Często chcemy zbadać, czy wpisywany tekst (np. post na forum) ma określoną długość. Możemy to osiągnąć używając funkcji strlen(). Poniżej przykład:</p>
+
+<form name="c" action="z4.php" method="post">
+
+<textarea id="6735" rows="16" cols="60">&lt;?php
+
+// przykładowy ciąg znaków
+$wyswietl = "silny jak pudzian";
+
+// użycie funkcji strlen()
+$ilosc = strlen($wyswietl);
+
+if ($ilosc &gt; 20)
+   echo "Treść dłuższa niż 20 znaków.";
+else
+   echo "Treść zawiera 20 znaków lub mniej.";
+
+?&gt;
+
+</textarea>
+
+<p><input type="submit" value="Uruchom"></p>
+
+</form>
+<p>W przypadku:"silny jak pudzian" spowoduje to wyświetlenie następującego wyniku</p>
+<textarea id="f" rows="2" cols="60">Treść zawiera 20 znaków lub mniej.
+</textarea>
+
+
+<h1>Połączenie dwóch funkcji</h1>
+
+
+<h2>Kombo</h2>
+
+<p>Połączenie funkcji z parametrami ze sprawdzeniem liczby znaków w ciągu</p>
+
+<form name="c" action="z5.php" method="post">
+
+<textarea id="877009" rows="23" cols="60">&lt;?php
+         function ktoSilniejszy($a, $b) {
+            $pudzian = $a * $b;
+			$toczek = $a *$b - $a + 21;
+            echo "Pudzianowski podnosi $pudzian kg &lt;br&gt;";
+			echo "Toczek podnosi $toczek kg &lt;br&gt;";
+		 }
+         
+         ktosilniejszy(100,4);
+		 
+$tooczek="Toczek";
+$pudzilla="Pudzianowski";
+$ilosc = strlen($pudzilla);
+$ilosci = strlen($tooczek);
+if ($ilosc &gt; $ilosci)
+   echo "Pudzian ma dłuższe nazwisko";
+else
+   echo "Toczek ma dłuższe nazwisko.";
+		 
+?&gt;
+</textarea>
+<p><input type="submit" value="Uruchom"></p>
+</form>
+
+
+
+</body>
+</html>
